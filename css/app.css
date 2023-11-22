@@ -10,6 +10,7 @@ body {
 
 /*this is important to give the map a height*/
 #map {
-  width: auto;
-  height: 100%;
+  height: calc(100vh - 150px); /* Adjust the height of the map, considering the navbar height */
+  width: 100%;
+  z-index: 0;
 }
