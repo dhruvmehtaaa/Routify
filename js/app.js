@@ -23,10 +23,27 @@ var OpenStreetMap = L.tileLayer(
 // empty geojson layer for the shortes path result
 var pathLayer = L.geoJSON(null);
 
+var greenIcon = new L.Icon({
+	iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	shadowSize: [41, 41]
+  });
+
+
+  var orangeIcon = new L.Icon({
+	iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	shadowSize: [41, 41]
+  });
+
 // draggable marker for starting point. Note the marker is initialized with an initial starting position
-var sourceMarker = L.marker([19.132090, 72.917606], {
-	draggable: true
-})
+var sourceMarker = L.marker([19.132090, 72.917606],{icon: orangeIcon, draggable: true})
 	.on("dragend", function(e) {
 		selectedPoint = e.target.getLatLng();
 		getVertex(selectedPoint);
@@ -35,7 +52,7 @@ var sourceMarker = L.marker([19.132090, 72.917606], {
 	.addTo(map);
 
 // draggbale marker for destination point.Note the marker is initialized with an initial destination positon
-var targetMarker = L.marker([19.130714, 72.914262], {
+var targetMarker = L.marker([19.130714, 72.914262], { icon: greenIcon,
 	draggable: true
 })
 	.on("dragend", function(e) {
