@@ -43,24 +43,40 @@ var greenIcon = new L.Icon({
   });
 
 // draggable marker for starting point. Note the marker is initialized with an initial starting position
-var sourceMarker = L.marker([19.132090, 72.917606],{icon: orangeIcon, draggable: true})
-	.on("dragend", function(e) {
-		selectedPoint = e.target.getLatLng();
-		getVertex(selectedPoint);
-		getRoute();
-	})
-	.addTo(map);
+var sourceMarker = L.marker([19.132090, 72.917606], { icon: orangeIcon, draggable: true })
+    .on("mouseover", function (e) {
+        // Create and bind a popup with your label content
+        var popupContent = "Source";
+        e.target.bindPopup(popupContent).openPopup();
+    })
+    .on("mouseout", function (e) {
+        // Close the popup when mouse leaves the marker
+        e.target.closePopup();
+    })
+    .on("dragend", function (e) {
+        selectedPoint = e.target.getLatLng();
+        getVertex(selectedPoint);
+        getRoute();
+    })
+    .addTo(map);
 
 // draggbale marker for destination point.Note the marker is initialized with an initial destination positon
-var targetMarker = L.marker([19.130714, 72.914262], { icon: greenIcon,
-	draggable: true
-})
-	.on("dragend", function(e) {
-		selectedPoint = e.target.getLatLng();
-		getVertex(selectedPoint);
-		getRoute();
-	})
-	.addTo(map);
+var targetMarker = L.marker([19.130714, 72.914262], { icon: greenIcon, draggable: true })
+    .on("mouseover", function (e) {
+        // Create and bind a popup with your label content
+        var popupContent = "Destination";
+        e.target.bindPopup(popupContent).openPopup();
+    })
+    .on("mouseout", function (e) {
+        // Close the popup when mouse leaves the marker
+        e.target.closePopup();
+    })
+    .on("dragend", function (e) {
+        selectedPoint = e.target.getLatLng();
+        getVertex(selectedPoint);
+        getRoute();
+    })
+    .addTo(map);
 
 // function to get nearest vertex to the passed point
 function getVertex(selectedPoint) {
